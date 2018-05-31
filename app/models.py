@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2018/1/6 14:59
-# @Author  : liwugang
-# @Email   : liwg@olei.me
+# @Time    : 2018/5/16 14:59
+# @Author  : Wugang Li
+# @Email   : i@olei.me
 # @File    : models.py
 # @Software: PyCharm
 # 存放数据模型
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from _datetime import datetime
-import pymysql
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@127.0.0.1:3306/movie"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-
-db = SQLAlchemy(app)
+# from flask import Flask
+# from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from app import db
+# import pymysql
+#
+# app = Flask(__name__)
+# app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@127.0.0.1:3306/movie"
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+#
+# db = SQLAlchemy(app)
 
 
 # 会员数据模型
@@ -161,6 +163,10 @@ class Admin(db.Model):
     def __repr__(self):
         return "<Admin %r>" % self.name
 
+    def check_pwd(self,pwd):
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.pwd,pwd)
+
 
 # 管理员登录日志
 class Adminlog(db.Model):
@@ -186,7 +192,7 @@ class Oplog(db.Model):
     def __repr__(self):
         return "<Oplog %r>" % self.id
 
-
+'''
 if __name__ == "__main__":
     # db.create_all()
     # role = Role(
@@ -205,3 +211,5 @@ if __name__ == "__main__":
     )
     db.session.add(admin)
     db.session.commit()
+'''
+
