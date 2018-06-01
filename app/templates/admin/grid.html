@@ -6,7 +6,7 @@
             <span>首页</span>
             <span class="label label-primary pull-right">1</span>
         </a>
-        <ul class="treeview-menu" >
+        <ul class="treeview-menu">
             <li id="g-1-1">
                 <a href="{{ url_for('admin.index') }}">
                     <i class="fa fa-circle-o"></i> 控制面板
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li id="g-2-2">
-                <a href="{{ url_for('admin.tag_list') }}">
+                <a href="{{ url_for('admin.tag_list',page=1) }}">
                     <i class="fa fa-circle-o"></i> 标签列表
                 </a>
             </li>
